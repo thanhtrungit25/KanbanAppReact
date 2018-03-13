@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import KanbanBoard from "./KanbanBoard";
+import PropTypes from "prop-types";
 
 let cardsList = [
   {
@@ -63,8 +64,21 @@ class Search extends Component {
   }
 }
 
+class Greeter extends Component {
+  render() {
+    return <h1>{this.props.salutation}</h1>;
+  }
+}
+Greeter.propTypes = {
+  salutation: PropTypes.string.isRequired
+};
+Greeter.defaultProps = {
+  salutation: "Hello World"
+};
+
 ReactDOM.render(
   // <Search />,
   <KanbanBoard cards={cardsList} />,
+  // <Greeter />,
   document.getElementById("root")
 );
