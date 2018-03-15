@@ -8,6 +8,7 @@ import constants from "./constants";
 
 const cardDragSpec = {
   beginDrag(props) {
+    console.log("beginDrag, id Card drag: ", props.id);
     return {
       id: props.id
     };
