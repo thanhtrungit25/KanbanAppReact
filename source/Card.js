@@ -10,8 +10,13 @@ const cardDragSpec = {
   beginDrag(props) {
     console.log("beginDrag, id Card drag: ", props.id);
     return {
-      id: props.id
+      id: props.id,
+      status: props.status
     };
+  },
+  endDrag(props) {
+    console.log("endDrag");
+    props.cardCallbacks.persistCardDrag(props.id, props.status);
   }
 };
 
