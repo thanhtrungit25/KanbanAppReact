@@ -4,11 +4,190 @@
 <head>
   <title>First React Component</title>
   <link rel="stylesheet" href="style.css">
+  <style media="screen">
+    body {
+      /* text-align: center; */
+      font: 16px/1 sans-serif;
+    }
+
+    #root {
+      height: 100%;
+    }
+
+    h1 {
+      font-weight: 200;
+      color: #3b414c;
+      font-size: 20px;
+    }
+
+    .app {
+      white-space: nowrap;
+      height: 100%;
+    }
+
+    .snack {
+      display: inline-block;
+      padding: .5em;
+      margin: 0 1em 1em 0.25em;
+      border: 4px solid #d9d9d9;
+      background: #f7f7f7;
+      height: 5rem;
+      width: 5rem;
+      border-radius: 5rem;
+      cursor: pointer;
+      line-height: 5em;
+      text-align: center;
+      color: #333;
+    }
+
+    .shopping-cart {
+      border: 5px dashed #d9d9d9;
+      border-radius: 10px;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    a {
+      font-family: Helvetica, Arial, sans-serif;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .button {
+      padding: 0.75rem 1rem;
+      border-radius: 0.3rem;
+      box-shadow: 0;
+      background-color: #bbbbbb;
+    }
+
+    .button:hover {
+      background-color: #ee2222;
+      box-shadow: 0 4px #990000;
+      transition: 0.5s;
+    }
+
+    @keyframes pulsing-heart {
+      0% {
+        transform: none;
+      }
+      50% {
+        transform: scale(1.4)
+      }
+      100% {
+        transform: none;
+      }
+    }
+
+    .heart {
+      font-size: 10rem;
+      color: #FF0000;
+    }
+
+    .heart:hover {
+      animation: pulsing-heart .5s infinite;
+      transform-origin: center;
+    }
+
+    /* Sidebar default style */
+
+    .sidebar {
+      background-color: #eee;
+      box-shadow: 1px 0 3px #888888;
+      position: absolute;
+      width: 15rem;
+      height: 100%;
+    }
+
+    .sidebar-transition {
+      opacity: 0;
+      left: -15rem;
+    }
+
+    .sidebar-transition-active {
+      opacity: 1;
+      left: 0;
+      transition: ease-in-out 0.5s;
+    }
+
+    /* ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 15px;
+      border-bottom: solid 1px #eee;
+      background-color: #ddd;
+    } */
+
+    /* input {
+      padding: 5px;
+      width: 120px;
+      margin-top: 10px;
+    } */
+
+    .item {
+      background-color: #efefef;
+      cursor: pointer;
+      display: block;
+      margin-bottom: 1px;
+      padding: 8px 12px;
+      width: 120px;
+    }
+
+    .example-enter {
+      opacity: 0;
+      transform: translateX(-250px)
+    }
+
+    .example-enter.example-enter-active {
+      opacity: 1;
+      transform: translateX(0);
+      transition: 0.3s;
+    }
+
+    .example-leave {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .example-leave.example-leave-active {
+      opacity: 0;
+      transform: translateX(250px);
+      transition: 0.3s;
+    }
+
+    .example-appear {
+      opacity: 0;
+      transform: translateX(-250px);
+    }
+
+    .example-appear.example-appear-active {
+      opacity: 1;
+      transform: translateX(0);
+      transition: .5s;
+    }
+  </style>
 </head>
 
 <body>
   <div id="root"></div>
-  <script type="text/javascript" src="bundle.js"></script>
+  <!-- <div>
+    <div class="heart">&hearts;</div>
+  </div>
+  <br /> -->
+  <!-- <header>
+    <button onclick="document.querySelector('.sidebar').classList.add('sidebar-transition-active');">&#9776;</button>
+  </header> -->
+  <div class=" sidebar sidebar-transition ">
+    <ul>
+      <li>Some content</li>
+      <li>Content B</li>
+      <li>Content C</li>
+      <li>Content D</li>
+    </ul>
+  </div>
+  <script type="text/javascript " src="bundle.js "></script>
 </body>
 
 </html>
