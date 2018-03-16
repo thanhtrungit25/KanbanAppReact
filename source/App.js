@@ -1,13 +1,18 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { Router, Route, Link } from "react-router";
+import createBrowserHistory from "history/lib/createBrowserHistory";
+
 import KanbanBoardContainer from "./KanbanBoardContainer";
 // import CardForm from "./CardForm";
 import NewCard from "./NewCard";
+import EditCard from "./EditCard";
 
 import ContactsApp from "./ContactsApp";
 import AnimatedShoppingList from "./AnimatedShoppingList";
 import Container from "./Container";
 import PropTypes from "prop-types";
+import KanbanBoard from "./KanbanBoard";
 
 let cardsList = [
   {
@@ -91,14 +96,23 @@ let contacts = [
   { name: "Sebastian Markbage", email: "sebmarkbage@here.com" }
 ];
 
+// <NewCard />,
+// <CardForm />,
+// <Container />,
+// <Search />,
+// <KanbanBoardContainer />,
+// <AnimatedShoppingList />,
+// <Greeter />,
+// <ContactsApp contacts={contacts} />,
 ReactDOM.render(
-  <NewCard />,
-  // <CardForm />,
-  // <Container />,
-  // <Search />,
-  // <KanbanBoardContainer />,
-  // <AnimatedShoppingList />,
-  // <Greeter />,
-  // <ContactsApp contacts={contacts} />,
+  <Router history={createBrowserHistory()}>
+    <Route component={KanbanBoardContainer}>
+      <Route path="/" component={KanbanBoard}>
+        <Route path="new" component={NewCard} />
+        <Route path="edit/:card_id" component={EditCard} />
+      </Route>
+    </Route>
+  </Router>,
+
   document.getElementById("root")
 );

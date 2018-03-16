@@ -9,10 +9,17 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loader: "babel",
+        exclude: /node_modules/,
         query: {
           presets: ["es2015", "react"]
         }
       }
     ]
+  },
+  devServer: {
+    contentBase: "./public",
+    colors: true,
+    historyApiFallback: true,
+    inline: true
   }
 };
