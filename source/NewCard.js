@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CardForm from "./CardForm";
+import PropTypes from "prop-types";
 
 class NewCard extends Component {
   componentWillMount() {
@@ -45,5 +46,9 @@ class NewCard extends Component {
     );
   }
 }
+
+NewCard.propTypes = {
+  cardCallbacks: PropTypes.object
+};
 
 export default NewCard;
