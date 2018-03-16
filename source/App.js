@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import KanbanBoardContainer from "./KanbanBoardContainer";
+// import CardForm from "./CardForm";
+import NewCard from "./NewCard";
+
 import ContactsApp from "./ContactsApp";
 import AnimatedShoppingList from "./AnimatedShoppingList";
 import Container from "./Container";
@@ -89,9 +92,11 @@ let contacts = [
 ];
 
 ReactDOM.render(
+  <NewCard />,
+  // <CardForm />,
   // <Container />,
   // <Search />,
-  <KanbanBoardContainer />,
+  // <KanbanBoardContainer />,
   // <AnimatedShoppingList />,
   // <Greeter />,
   // <ContactsApp contacts={contacts} />,
