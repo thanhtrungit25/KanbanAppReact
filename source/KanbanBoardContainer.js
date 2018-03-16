@@ -269,13 +269,18 @@ class KanbanBoardContainer extends Component {
   updateCard(card) {
     let prevState = this.state;
 
+    console.log("this.state.cards", this.state.cards);
+    console.log("card", card);
     // Find the index of the card
-    let cardIndex = this.state.cards.find(c => c.id == card.id);
+    let cardIndex = this.state.cards.findIndex(c => c.id === card.id);
+    console.log("cardIndex", cardIndex);
 
     // Using the $set command, we will change the whole card
     let nextState = update(this.state.cards, {
       [cardIndex]: { $set: card }
     });
+
+    console.log("nextState", nextState);
 
     // set the component state to the mutated object
     this.setState({ cards: nextState });

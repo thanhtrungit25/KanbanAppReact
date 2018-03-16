@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router";
 import CheckList from "./CheckList";
 import marked from "marked";
 import PropTypes from "prop-types";
@@ -95,6 +96,9 @@ class Card extends Component {
       connectDragSource(
         <div className="card">
           <div style={sideColor} />
+          <div className="card__edit">
+            <Link to={"/edit/" + this.props.id}>&#9998;</Link>
+          </div>
           <div
             className={
               this.state.showDetails ? "card__title--is-open" : "card__title"
