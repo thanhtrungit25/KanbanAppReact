@@ -20,13 +20,17 @@ class CardForm extends Component {
               value={this.props.draftCard.title}
               onChange={this.handleChange.bind(this, "title")}
               placeholder="Title"
+              require={true}
               autoFocus={true}
             />
+            <br />
             <textarea
               value={this.props.draftCard.description}
               placeholder="description"
+              require={true}
               onChange={this.handleChange.bind(this, "description")}
             />
+            <br />
             <label htmlFor="status">Status</label>
             <select
               id="status"

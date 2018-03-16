@@ -140,10 +140,12 @@ textarea {
   font-size: 13px;
   border: none;
 }
+
 .card.big input[type="text"] {
   font-size: 20px;
   font-weight: bold;
 }
+
 .card.big input[type="text"]:focus,
 .card.big textarea:focus {
   outline: dashed thin #999;
@@ -159,7 +161,7 @@ textarea {
 
 .actions {
   margin-top: 10px;
-  text-align: center;
+  text-align: right;
 }
 
 .card.big button {

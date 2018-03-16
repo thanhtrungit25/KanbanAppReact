@@ -22,18 +22,18 @@ class NewCard extends Component {
     console.log("handleSubmit on new card");
     console.log("card draft data need to save", this.state);
     // [Todo]
-    // this.props.cardCallbacks.addCard(this.state);
-    // this.props.history.pushState(null, "/");
+    this.props.cardCallbacks.addCard(this.state);
+    this.props.history.pushState(null, "/");
   }
 
   handleClose(e) {
     console.log("handleClose on NewCard");
-    // this.props.history.pushState(null, "/");
+    this.props.history.pushState(null, "/");
   }
 
   render() {
     console.log("state default card draf on new card", this.state);
-
+    console.log("props on new card", this.props);
     return (
       <CardForm
         draftCard={this.state}

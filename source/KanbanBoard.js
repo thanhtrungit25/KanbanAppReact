@@ -6,6 +6,14 @@ import HTML5Backend from "react-dnd-html5-backend";
 
 class KanbanBoard extends Component {
   render() {
+    console.log("KanbanBoard");
+    console.log("this.props", this.props);
+    let cardModal =
+      this.props.children &&
+      React.cloneElement(this.props.children, {
+        cards: this.props.cards,
+        cardCallbacks: this.props.cardCallbacks
+      });
     return (
       <div className="app">
         <List
@@ -30,6 +38,8 @@ class KanbanBoard extends Component {
           taskCallbacks={this.props.taskCallbacks}
           cardCallbacks={this.props.cardCallbacks}
         />
+
+        {cardModal}
       </div>
     );
   }

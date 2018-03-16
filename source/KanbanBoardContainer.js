@@ -226,22 +226,97 @@ class KanbanBoardContainer extends Component {
       });
   }
 
+  addCard(card) {
+    // Keep a reference to the original state prior to the mutations
+    // in case we need to revert the optimictic change in the UI
+    let prevState = this.state;
+
+    // Add a temporary ID to the card
+    if (card.id === null) {
+      card.id = Object.assign({}, card, { id: Date.now() });
+    }
+
+    // Create a new object and push the new card to the array of cards
+    let nextState = update(this.state.cards, { $push: [card] });
+
+    // Set the component state to the mutated object
+    this.setState({ cards: nextState });
+
+    // Call the API to add the card on the server
+    fetch(`${API_URL}/cards`, {
+      method: "post",
+      headers: API_HEADERS,
+      body: JSON.stringify(card)
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Server response wasn't OK");
+        }
+      })
+      .then(responseData => {
+        // Whe the server return the definitive ID
+        // used for the new card on the server, update it on React
+        card.id = responseData.id;
+        this.setState({ cards: nextState });
+      })
+      .catch(error => {
+        this.setState(prevState);
+      });
+  }
+
+  updateCard(card) {
+    let prevState = this.state;
+
+    // Find the index of the card
+    let cardIndex = this.state.cards.find(c => c.id == card.id);
+
+    // Using the $set command, we will change the whole card
+    let nextState = update(this.state.cards, {
+      [cardIndex]: { $set: card }
+    });
+
+    // set the component state to the mutated object
+    this.setState({ cards: nextState });
+
+    // Call the API to update the card on the server
+    fetch(`${API_URL}/cards/${card.id}`, {
+      method: "put",
+      headers: API_HEADERS,
+      body: JSON.stringify(card)
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Server response wasn't OK");
+        }
+      })
+      .catch(error => {
+        console.log("Fech error", error);
+        this.setState(prevState);
+      });
+  }
+
   render() {
-    return (
-      <KanbanBoard
-        cards={this.state.cards}
-        taskCallbacks={{
+    let kanbanBoard =
+      this.props.children &&
+      React.cloneElement(this.props.children, {
+        cards: this.state.cards,
+        taskCallbacks: {
           toggle: this.toggleTask.bind(this),
           delete: this.deleteTask.bind(this),
           add: this.addTask.bind(this)
-        }}
-        cardCallbacks={{
+        },
+        cardCallbacks: {
+          addCard: this.addCard.bind(this),
+          updateCard: this.updateCard.bind(this),
           updateStatus: this.updateCardStatus,
           updatePosition: this.updateCardPosition,
           persistCardDrag: this.persistCardDrag.bind(this)
-        }}
-      />
-    );
+        }
+      });
+
+    return kanbanBoard;
   }
 }
 
